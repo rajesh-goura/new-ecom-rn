@@ -12,10 +12,9 @@ import UserDetails from './screens/UserDetails';
 import OrdersScreen from './screens/OrderScreen';
 import AnotherScreen from './screens/BellScreen'; 
 import ThemePage from './screens/ThemePage';
-import ProductDetails from './screens/ProductDetails'; // Import new screen
+import ProductDetails from './screens/ProductDetails'; 
 import { navigationRef } from './navigation/navigationService';
-import { RootStackParamList } from './types'; // Import the RootStackParamList type
-
+import { RootStackParamList } from './types'; 
 const Stack = createStackNavigator<RootStackParamList>();
 const Tab = createBottomTabNavigator();
 

@@ -6,7 +6,7 @@ import messaging from "@react-native-firebase/messaging";
 import notifee, { EventType } from "@notifee/react-native";
 import { navigate, navigateToNestedScreen } from "../navigation/navigationService";
 import { useSelector } from "react-redux";
-import type { RootState } from "../redux/store"; // Import the RootState type
+import type { RootState } from "../redux/store";
 
 const requestUserPermission = async () => {
   const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS);
@@ -165,5 +165,5 @@ export const useNotification = () => {
       unsubscribeForegroundEvent();
       unsubscribeBackground();
     };
-  }, [token]); // Ensure useEffect runs when token changes
+  }, [token]); 
 };

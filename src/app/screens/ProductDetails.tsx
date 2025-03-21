@@ -4,7 +4,7 @@ import { useAppSelector } from "../redux/hooks";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { StackScreenProps } from '@react-navigation/stack';
-import { RootStackParamList } from "../types"; // Import the RootStackParamList type
+import { RootStackParamList } from "../types";
 
 type ProductDetailsProps = StackScreenProps<RootStackParamList, 'ProductDetails'>;
 
@@ -24,7 +24,7 @@ export default function ProductDetails({ route }: ProductDetailsProps) {
         try {
           const response = await axios.get(`https://dummyjson.com/products/${id}`);
           setProduct(response.data);
-          setError(null); // Clear any previous errors
+          setError(null); 
         } catch (error) {
           console.error("Failed to fetch product details:", error);
           setError("Failed to fetch product details. Please try again later.");

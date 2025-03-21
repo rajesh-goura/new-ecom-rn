@@ -18,7 +18,7 @@ const Product: React.FC<ProductProps> = ({ id, title, price, thumbnail, onPressH
   const navigation = useNavigation();
 
   const handlePress = () => {
-    navigate('ProductDetails', { id }); // Pass only the id parameter
+    navigate('ProductDetails', { id }); 
   };
 
   return (

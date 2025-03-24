@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { StyleSheet, Image } from 'react-native';
 import { Provider, useSelector } from 'react-redux';
 import store, { RootState } from './redux/store';
+import auth from '@react-native-firebase/auth';
+import analytics, { getAnalytics } from '@react-native-firebase/analytics';
 
 import SignIn from './screens/SignIn';
 import HomePage from './screens/HomePage';
@@ -14,7 +16,9 @@ import AnotherScreen from './screens/BellScreen';
 import ThemePage from './screens/ThemePage';
 import ProductDetails from './screens/ProductDetails'; 
 import { navigationRef } from './navigation/navigationService';
-import { RootStackParamList } from './types'; 
+import { RootStackParamList } from './types';
+
+
 const Stack = createStackNavigator<RootStackParamList>();
 const Tab = createBottomTabNavigator();
 
@@ -64,11 +68,40 @@ const MainTabs = () => {
 const MainNavigation = () => {
   const token = useSelector((state: RootState) => state.auth.token);
   const theme = useSelector((state: RootState) => state.theme.theme);
-  
   const navigationTheme = theme === 'dark' ? DarkTheme : DefaultTheme;
+  const routeNameRef = React.useRef<string | undefined>(undefined);
+  // Automatically track screen views
+  // const onScreenChange = async (state: any) => {
+  //   if (!state) return;
+  //   const currentRoute = state.routes[state.index]?.name; // ✅ Safe check
+  
+  //   if (currentRoute) {
+  //     await analytics().logScreenView({
+  //       screen_name: currentRoute, // ✅ Explicitly setting screen name
+  //       screen_class: currentRoute,
+  //     });
+  
+  //     console.log(`📊 Screen View Tracked: ${currentRoute}`);
+  //   }
+  // };
+  
 
   return (
-    <NavigationContainer theme={navigationTheme} ref={navigationRef}>
+    <NavigationContainer theme={navigationTheme} ref={navigationRef} onReady={() => {
+      routeNameRef.current = navigationRef.current?.getCurrentRoute()?.name;
+    }}
+    onStateChange={async () => {
+      const previousRouteName = routeNameRef.current;
+      const currentRouteName = navigationRef.current?.getCurrentRoute()?.name;
+
+      if (previousRouteName !== currentRouteName) {
+        await getAnalytics().logScreenView({
+          screen_name: currentRouteName,
+          screen_class: currentRouteName,
+        });
+      }
+      routeNameRef.current = currentRouteName;
+    }}>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {token ? (
           <>
@@ -82,6 +115,7 @@ const MainNavigation = () => {
     </NavigationContainer>
   );
 };
+
 
 const App = () => {
   return (

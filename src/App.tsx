@@ -9,8 +9,11 @@ import { updateThemeToSystem } from './app/redux/slices/themeSlice';
 import { useNotification } from './app/notifications/useNotification';
 import { useAppSelector } from './app/redux/hooks';
 
+
+
 const AppContent = () => {
   const dispatch = useDispatch();
+  
   useNotification();
   const token = useAppSelector((store: RootState) => store.auth.token);
   useEffect(() => {

@@ -1,4 +1,6 @@
 import { View, Text, StyleSheet, Image, Button } from 'react-native';
+import * as Linking from 'expo-linking';
+
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { fetchUserDetails, clearUserDetails } from '../redux/slices/usersSlice';
@@ -50,7 +52,10 @@ const UserDetails = () => {
 
   return (
     <View>
-      <Text>Profile</Text>
+      <Text>this is Profile</Text>
+      <View style={styles.container}>
+      <Button title="Open a URL" onPress={() => Linking.openURL('https://expo.dev/')} />
+    </View>
     </View>
   );
 };

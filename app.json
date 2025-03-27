@@ -1,6 +1,6 @@
 {
   "expo": {
-   
+    
     "facebookAppId": "2728226737565800",
     "facebookDisplayName": "LoginApp96",
       
@@ -15,7 +15,7 @@
     "ios": {
       "googleServicesFile": "./GoogleService-Info.plist",
       "supportsTablet": true,
-      "bundleIdentifier": "com.anonymous.LoginApp"
+      "bundleIdentifier": "    "
     },
     "android": {
       "googleServicesFile": "./google-services.json",

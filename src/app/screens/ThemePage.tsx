@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { 
-  View, Button, StyleSheet, Linking, useColorScheme, Alert, Text 
+  View, Button, StyleSheet, useColorScheme, Alert, Text 
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, AppDispatch } from '../redux/store';
@@ -10,6 +10,7 @@ import api from '../crashlytics/axiosInstance';
 import { triggerTestCrash } from '../crashlytics/crashlyticsLogger'; 
 import { triggerTestCrasher } from '../crashlytics/triggerCrash';
 import { getCrashlytics } from '@react-native-firebase/crashlytics';
+import * as Linking from 'expo-linking';
 
 const supportedURL = 'https://google.com';
 
@@ -79,6 +80,10 @@ const ThemePage = () => {
 
      
       {response ? <Text style={styles.responseText}>{response}</Text> : null}
+
+      <View style={styles.container}>
+            <Button title="Open a URL" onPress={() => Linking.openURL('https://expo.dev/')} />
+          </View>
     </View>
   );
 };

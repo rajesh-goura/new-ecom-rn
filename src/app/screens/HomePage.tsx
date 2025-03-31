@@ -56,7 +56,7 @@ const HomePage = () => {
         theme === "dark" ? styles.darkContainer : styles.lightContainer,
       ]}
     >
-      {/* Smooth sliding SearchBar */}
+     
       <Animated.View
         style={[styles.searchBarContainer, { transform: [{ translateY }] }]}
       >
@@ -65,7 +65,7 @@ const HomePage = () => {
 
       <ScrollView onScroll={handleScroll} scrollEventThrottle={16}>
         <View style={styles.mainContainer}>
-          {/* Top Section with Profile & Icons */}
+         
           <View style={styles.topSection}>
             <TouchableOpacity style={styles.topSectionBtn}>
               <Image
@@ -96,7 +96,7 @@ const HomePage = () => {
             </TouchableOpacity>
           </View>
 
-          {/* Content Sections */}
+          
           <Animated.View style={{ opacity: animatedOpacity }}>
           <CategoryContainer />
           </Animated.View>

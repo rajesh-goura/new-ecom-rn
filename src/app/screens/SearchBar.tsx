@@ -23,13 +23,14 @@ const styles = StyleSheet.create({
   searchBar: {
     width: 342,
     height: 40,
+    
     borderRadius: 100,
-    marginVertical: 24,
+    
     paddingLeft: 19,
     paddingVertical: 11,
     flexDirection: "row",
     gap: 12,
-    marginBottom: 24,
+   
   },
   lightSearchBar: {
     backgroundColor: "#F4F4F4",
